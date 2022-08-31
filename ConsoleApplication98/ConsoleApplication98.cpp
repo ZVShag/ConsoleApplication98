@@ -73,41 +73,51 @@ public:
 
 int main()
 {
-    for (int i = 1; i < 10; i++)
+    int k = 0;
+    while (k != 3)
     {
-        school a(11 * 10^i + 1, 22 * 10^i + 2, 33 * 10^i + 3);
-        string my_file = "1.txt";
-        fstream f;
-        f.open(my_file, ofstream::app);
-        if (f.is_open())
-        {
-            f.write((char*)&a, sizeof(school));
+        cout << "Add from file 1:" << endl;
+        cout << "Up from file 2:" << endl;
+        cout << "Exit" << endl;
+        cin >> k;
+        if (k == 1) {
+            for (int i = 1; i < 10; i++)
+            {
+                school a(11 * 10 ^ i + 1, 22 * 10 ^ i + 2, 33 * 10 ^ i + 3);
+                string my_file = "1.txt";
+                fstream f;
+                f.open(my_file, ofstream::app);
+                if (f.is_open())
+                {
+                    f.write((char*)&a, sizeof(school));
 
+                }
+                else
+                {
+
+                }
+
+                f.close();
+
+            }
         }
-        else
+        if (k == 2)
         {
+            string fl = "1.txt";
+            ifstream f;
+            f.open(fl);
+            if (f.is_open())
+            {
+                school a;
+                while (f.read((char*)&a, sizeof(school)))
+                {
+                    if (a.get_numschool() % 2 == 0)
+                        a.print();
+                }
+                f.close();
 
+            }
         }
-
-        f.close();
-        
     }
-    string fl = "1.txt";
-    ifstream f;
-    f.open(fl);
-    if (f.is_open())
-    {
-        school a;
-        while (f.read((char*)&a, sizeof(school)))
-        {
-            if (a.get_numschool()%2==0)
-                a.print();
-        }
-        f.close();
-
-    }
-    
-    
-    
     
 }
